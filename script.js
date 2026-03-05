@@ -193,7 +193,7 @@ const displayFilterTree = (trees) => {
           <div class="badge badge-soft badge-success">${tree.category}</div>
            <div class="card-actions justify-between">
             <h1 class="text-xl text-green-500  font-bold">$ ${tree.price}</h1>
-             <button class="btn btn-active btn-success">Cart</button>
+             <button onclick = "addCart(${tree.id}, '${tree.name}', ${tree.price})"  class="btn btn-active btn-success">Cart</button>
            </div>
         </div>
       </div>
