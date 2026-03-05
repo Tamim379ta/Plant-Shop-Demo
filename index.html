@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tree Shop</title>
+
+  <!-- daisy ui  -->
+   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>  
+
+
+   <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <h1 class=" text-center text-4xl text-green-500 font-bold">Choose Your Tree</h1>
+
+  <main class="grid grid-cols-12 w-23/24 mx-auto gap-3">
+
+    <!-- categories -->
+    <div class="col-span-3 bg-base-200 shadow-sm  space-y-3 pb-6 sticky top-0 h-fit">
+
+      <h1 class="text-2xl font-bold text-center">categories</h1>
+
+      <div class="space-y-2 flex flex-col justify-center items-center  " id="level-container">
+        <button id="allBtn" onclick="loadCard()" class="btn w-60">All Tree</button>
+      </div>
+      
+    </div>
+
+    <!-- plants -->
+    <div class="col-span-6 bg-base-200 shadow-sm">
+
+      <div id="plant-container" class="grid grid-cols-1 lg:grid-cols-3 p-2 gap-2">
+        
+      </div>
+
+        <!-- loading  -->
+    <section id="loading" class="flex justify-center items-center py-10 hidden">
+    <span class="loading loading-infinity loading-xl"></span>
+
+    </section>
+
+    </div>
+
+    <!-- cart  -->
+    <div class="col-span-3 bg-base-200 shadow-sm sticky top-0 h-fit">
+
+      <h1 class="text-3xl font-bold p-5">Cart</h1>
+
+      <div class="p-8 space-y-3">
+        <p class="text-center">Your cart is empty Add trees to get started</p>
+        <div class="flex justify-between">
+          <h1 class="font-bold">Total:</h1>
+          <h2 class="font-bold">$<span>0</span></h2>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div>
+    <!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button>  -->
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <div id="modal-details">
+      
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+  </div>
+
+  <!-- js  -->
+
+  <script src="./script.js"></script>
+</body>
+</html>
