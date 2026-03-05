@@ -56,7 +56,7 @@ const displayTrees = (plants) => {
           <div class="badge badge-soft badge-success">${plant.category}</div>
            <div class="card-actions justify-between">
             <h1 class="text-xl text-green-500  font-bold">$ ${plant.price}</h1>
-             <button class="btn btn-active btn-success">Cart</button>
+             <button onclick = "addCart(${plant.id}, '${plant.name}', ${plant.price})" class="btn btn-active btn-success">Cart</button>
            </div>
         </div>
       </div>
@@ -64,6 +64,70 @@ const displayTrees = (plants) => {
     plantContainer.appendChild(plantCard);
   })
   manageLoading(false)
+}
+const cartContainer = document.getElementById("cartContainer");
+let totalPrice = document.getElementById("totalPrice")
+let cart = [];
+
+function addCart (id, name, price){
+  // console.log(id, name, price) 
+
+  price = Number(price);
+
+  const existingItem = cart.find(item => item.id == id)
+  if(existingItem){
+    existingItem.quantity+=1
+  }else{
+      cart.push({
+    id,
+    name,
+    price,
+    quantity: 1
+  })
+
+  }
+  updateCart()
+}
+
+function updateCart () {
+    cartContainer.innerHTML = "";
+
+    let total = 0;
+    cart.forEach(item => {
+      total += item.price * item.quantity ;
+    })
+
+    cart.forEach(item => {
+      const cartItem = document.createElement("div")
+
+      cartItem.innerHTML = `
+      <div class = "bg-gray-200 p-4 rounded-sm" >
+        <div class = "flex justify-between">
+          <div>
+          <h1>${item.name}</h1>
+          <h2>${item.price} × ${item.quantity} </h2>
+          </div>
+          <div>
+          <button onclick = "removeCart(${item.id})" class = "btn">×</button>
+          <p>${item.price * item.quantity}</p>
+          </div>
+         
+        
+        </div>
+
+      `
+      cartContainer.appendChild(cartItem)
+      
+    });
+
+    totalPrice.innerText = total;
+}
+
+function removeCart(treeId){
+  const updateCartElement = cart.filter((item) => item.id != treeId)
+  cart = updateCartElement;
+
+  updateCart()
 }
 
 const loadDetails = async(id) => {
